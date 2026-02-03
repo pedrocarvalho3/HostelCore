@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HostelCore.Application\HostelCore.Application.csproj" />
+    <ProjectReference Include="..\HostelCore.Infrastructure\HostelCore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
