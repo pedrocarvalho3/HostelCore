@@ -30,7 +30,7 @@ namespace HostelCore.API.Controllers
             return Ok(guests);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var guest = await _guestService.GetByIdAsync(id);
