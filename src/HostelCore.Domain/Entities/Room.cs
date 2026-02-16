@@ -2,7 +2,7 @@ namespace HostelCore.Domain.Entities
 {
     public class Room
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Code { get; set; } = null!;
         public string Type { get; set; } = null!; 

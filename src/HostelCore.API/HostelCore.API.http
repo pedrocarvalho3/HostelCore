@@ -1,6 +1,6 @@
 @HostelCore.API_HostAddress = http://localhost:5296
 
-GET {{HostelCore.API_HostAddress}}/weatherforecast/
+POST {{HostelCore.API_HostAddress}}/api/guests
 Accept: application/json
 
 ###
