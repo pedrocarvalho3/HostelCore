@@ -1,4 +1,5 @@
 ﻿using HostelCore.Application.DTOs;
+using HostelCore.Application.Interfaces;
 using HostelCore.Domain.Entities;
 using HostelCore.Domain.Interfaces;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HostelCore.Application.Services
 {
-    public class RoomService
+    public class RoomService : IRoomService
     {
         private readonly IRoomRepository _roomRepository;
 

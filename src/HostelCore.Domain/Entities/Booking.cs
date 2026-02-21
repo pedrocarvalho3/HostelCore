@@ -4,8 +4,8 @@ namespace HostelCore.Domain.Entities
     {
         public Guid Id { get; set; }
 
-        public int GuestId { get; set; }
-        public int RoomId { get; set; }
+        public Guid GuestId { get; set; }
+        public Guid RoomId { get; set; }
 
         public DateTime CheckinDate { get; set; }
         public DateTime CheckoutDate { get; set; }

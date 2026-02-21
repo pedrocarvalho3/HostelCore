@@ -1,20 +1,13 @@
-using HostelCore.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
-using HostelCore.Application.Services;
-using HostelCore.Domain.Interfaces;
-using HostelCore.Infrastructure.Repositories;
+using HostelCore.Application;
+using HostelCore.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddScoped<IGuestRepository, GuestRepository>();
-builder.Services.AddScoped<GuestService>();
-builder.Services.AddScoped<IRoomRepository, RoomRepository>();
-builder.Services.AddScoped<RoomService>();
+builder.Services
+    .AddApplication()
+    .AddInfrastructure(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
