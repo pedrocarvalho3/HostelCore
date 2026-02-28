@@ -3,6 +3,7 @@ using HostelCore.Application.Interfaces;
 using HostelCore.Application.Responses;
 using HostelCore.Domain.Entities;
 using HostelCore.Domain.Interfaces;
+using HostelCore.Domain.ValueObjects;
 
 namespace HostelCore.Application.Services
 {
@@ -17,16 +18,12 @@ namespace HostelCore.Application.Services
 
         public async Task CreateAsync(CreateBookingDto dto)
         {
-            if (dto.CheckoutDate <= dto.CheckinDate)
-                throw new Exception("Checkout must be after checkin.");
-
             var booking = new Booking
             {
                 Id = Guid.NewGuid(),
                 GuestId = dto.GuestId,
                 RoomId = dto.RoomId,
-                CheckinDate = dto.CheckinDate,
-                CheckoutDate = dto.CheckoutDate,
+                Period = new DateRange(dto.CheckinDate, dto.CheckoutDate),
                 Status = BookingStatus.Reserved,
             };
             await _bookingRepository.AddAsync(booking);
@@ -39,8 +36,8 @@ namespace HostelCore.Application.Services
             return bookings.Select(b => new BookingResponseDto
             {
                 Id = b.Id,
-                CheckinDate = b.CheckinDate,
-                CheckoutDate = b.CheckoutDate,
+                CheckinDate = b.Period.Checkin,
+                CheckoutDate = b.Period.Checkout,
                 Status = b.Status,
                 GuestName = b.Guest.Name,
                 RoomCode = b.Room.Code
@@ -57,8 +54,8 @@ namespace HostelCore.Application.Services
             return new BookingResponseDto
             {
                 Id = booking.Id,
-                CheckinDate = booking.CheckinDate,
-                CheckoutDate = booking.CheckoutDate,
+                CheckinDate = booking.Period.Checkin,
+                CheckoutDate = booking.Period.Checkout,
                 Status = booking.Status,
                 GuestName = booking.Guest.Name,
                 RoomCode = booking.Room.Code

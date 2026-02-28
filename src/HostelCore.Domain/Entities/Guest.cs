@@ -1,3 +1,5 @@
+using HostelCore.Domain.ValueObjects;
+
 namespace HostelCore.Domain.Entities
 {
     public class Guest
@@ -6,11 +8,11 @@ namespace HostelCore.Domain.Entities
 
         public string Name { get; set; } = null!;
 
-        public string Document { get; set; } = null!;
+        public Document Document { get; set; } = null!;
 
-        public string Phone { get; set; } = null!;
+        public Phone Phone { get; set; } = null!;
 
-        public string? Email { get; set; }
+        public Email? Email { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

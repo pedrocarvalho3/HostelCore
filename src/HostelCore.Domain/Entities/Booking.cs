@@ -1,3 +1,5 @@
+using HostelCore.Domain.ValueObjects;
+
 namespace HostelCore.Domain.Entities
 {
     public class Booking
@@ -7,8 +9,7 @@ namespace HostelCore.Domain.Entities
         public Guid GuestId { get; set; }
         public Guid RoomId { get; set; }
 
-        public DateTime CheckinDate { get; set; }
-        public DateTime CheckoutDate { get; set; }
+        public DateRange Period { get; set; } = null!;
 
         public BookingStatus Status { get; set; }
 
